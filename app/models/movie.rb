@@ -1,0 +1,6 @@
+class Movie < ActiveRecord::Base
+  #attr_accessible :title, :rating, :description, :release_date
+  #attr_protected :title, :rating, :description, :release_date
+  #attr_protected :rating, :description, :release_date
+  
+end
