@@ -15,15 +15,8 @@ class MoviesController < ApplicationController
     # will render app/views/movies/show.<extension> by default
   end
   
-##### OLD CREATE METHOD  
-#  def create
-#    @movie = Movie.create!(movie_params)
-#    flash[:notice] = "#{@movie.title} was successfully created."
-#    redirect_to movies_path
-#  end
-  
   def create
-    @movie = Movie.new(params[:movie])
+    @movie = Movie.new(movie_params)
     if @movie.save
       flash[:notice] = "#{@movie.title} was successfully created."
       redirect_to movies_path
@@ -32,18 +25,10 @@ class MoviesController < ApplicationController
     end 
   end
 
-### OLD UPDATE
-#  def update
-#    @movie = Movie.find params[:id]
-#    @movie.update_attributes(movie_params)
-#   flash[:notice] = "#{@movie.title} was successfully updated."
-#    redirect_to movies_path
-#  end 
-
 # replaces the 'update' method in controller:
   def update
     @movie = Movie.find params[:id]
-    if @movie.update_attributes(params[:movie])
+    if @movie.update_attributes(movie_params)
       flash[:notice] = "#{@movie.title} was successfully updated."
       redirect_to movie_path(@movie)
     else
